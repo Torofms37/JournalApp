@@ -1,4 +1,3 @@
-import { Google } from "@mui/icons-material";
 import { Link as RouterLink } from "react-router-dom";
 import { Button, Grid, TextField, Typography, Link } from "@mui/material";
 import { AuthLayout } from "../layout/AuthLayout";
