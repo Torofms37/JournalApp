@@ -43,7 +43,7 @@ export const Sidebar = ({ drawerWith = 240 }) => {
                 <Grid container>
                   <ListItemText primary={text}></ListItemText>
                   <ListItemText
-                    secondary={"lorem fsdfff sdffd dfsffdsf dfsf"}
+                    secondary={"lorgit pusem fsdfff sdffd dfsffdsf dfsf"}
                   ></ListItemText>
                 </Grid>
               </ListItemButton>
