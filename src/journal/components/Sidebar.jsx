@@ -11,7 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 import { Box, Grid } from "@mui/system";
-import React from "react";
 
 export const Sidebar = ({ drawerWith = 240 }) => {
   return (
