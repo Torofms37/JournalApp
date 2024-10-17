@@ -10,13 +10,13 @@ import {
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 
-export const Navbar = ({ drawerWith = 240 }) => {
+export const Navbar = ({ drawerWidth = 240 }) => {
   return (
     <AppBar
       position="fixed"
       sx={{
-        width: { sm: `calc(100% - ${drawerWith}px)` },
-        ml: { sm: `${drawerWith}px` },
+        width: { sm: `calc(100% - ${drawerWidth}px)` },
+        ml: { sm: `${drawerWidth}px` },
       }}
     >
       <Toolbar>

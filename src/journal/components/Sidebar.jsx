@@ -1,5 +1,6 @@
 import { TurnedInNot } from "@mui/icons-material";
 import {
+  Box,
   Divider,
   Drawer,
   List,
@@ -9,25 +10,22 @@ import {
   ListItemText,
   Toolbar,
   Typography,
+  Grid,
 } from "@mui/material";
-import { Box, Grid } from "@mui/system";
 
-export const Sidebar = ({ drawerWith = 240 }) => {
+export const Sidebar = ({ drawerWidth = 240 }) => {
   return (
-    <Box
-      component="nav"
-      sx={{ with: { sm: drawerWith }, flexShrink: { sm: 0 } }}
-    >
+    <Box sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
       <Drawer
-        variant="permanent"
         open
+        variant="permanent"
         sx={{
           display: { xs: "block" },
-          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWith },
+          "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
         }}
       >
         <Toolbar>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component={"div"}>
             Toro el bolas
           </Typography>
         </Toolbar>
@@ -40,10 +38,10 @@ export const Sidebar = ({ drawerWith = 240 }) => {
                   <TurnedInNot />
                 </ListItemIcon>
                 <Grid container>
-                  <ListItemText primary={text}></ListItemText>
+                  <ListItemText primary={text} />
                   <ListItemText
                     secondary={"lorgit pusem fsdfff sdffd dfsffdsf dfsf"}
-                  ></ListItemText>
+                  />
                 </Grid>
               </ListItemButton>
             </ListItem>
