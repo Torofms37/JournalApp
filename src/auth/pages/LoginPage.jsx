@@ -3,8 +3,11 @@ import { Link as RouterLink } from "react-router-dom";
 import { Button, Grid, TextField, Typography, Link } from "@mui/material";
 import { AuthLayout } from "../layout/AuthLayout";
 import { useForm } from "../../hook/useForm";
+import { useDispatch } from "react-redux";
+import { checkingAuthentications, startGoogleSingIn } from "../../store/auth";
 
 export const LoginPage = () => {
+  const dispatch = useDispatch();
   const { email, password, onInputChange } = useForm({
     email: "toro@gmail.com",
     password: "123456",
@@ -12,9 +15,11 @@ export const LoginPage = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log({ email, password });
+    dispatch(checkingAuthentications());
   };
   const onGoogleSingIn = () => {
     console.log("onGoogleSingIn");
+    dispatch(startGoogleSingIn());
   };
   return (
     <AuthLayout title="Logeate">
