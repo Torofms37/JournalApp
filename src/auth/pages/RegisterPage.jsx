@@ -10,12 +10,17 @@ const formData = {
 };
 
 const formValidations = {
-  email: [(e) => value.includes("@"), "El correo debe tener un @"],
-  password: [
-    (e) => value.length >= 6,
-    "El password debe tener más de 6 letras",
+  email: [
+    (value) => value.includes("@"),
+    "El correo debe tener un @",
+    (value) => /\.(com|es|mx|org|do|co)$/.test(value),
+    "El correo debe terminar en .com, .es o .mx",
   ],
-  displayName: [(e) => value.length >= 1, "El nombre es obligatorio"],
+  password: [
+    (value) => /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(value),
+    "El password debe tener al menos una mayúscula, una minúscula, un número, un símbolo y mínimo 8 caracteres",
+  ],
+  displayName: [(value) => value.length >= 1, "El nombre es obligatorio"],
 };
 
 export const RegisterPage = () => {
@@ -39,6 +44,7 @@ export const RegisterPage = () => {
   };
   return (
     <AuthLayout title="Registro">
+      <h1>FormValid: {isFormValid ? "Valido" : "Invalido"}</h1>
       <form onSubmit={onsubmit}>
         <Grid container>
           <Grid item xs={12} sx={{ mt: 2 }}>
@@ -50,7 +56,7 @@ export const RegisterPage = () => {
               name="displayName"
               value={displayName}
               onChange={onInputChange}
-              error={!displayNameValid}
+              error={!!displayNameValid}
               helperText={displayNameValid}
             />
           </Grid>
@@ -63,6 +69,8 @@ export const RegisterPage = () => {
               name="email"
               value={email}
               onChange={onInputChange}
+              error={!!displayNameValid}
+              helperText={displayNameValid}
             />
           </Grid>
           <Grid item xs={12} sx={{ mt: 2 }}>
@@ -74,6 +82,8 @@ export const RegisterPage = () => {
               name="password"
               value={password}
               onChange={onInputChange}
+              error={!!displayNameValid}
+              helperText={displayNameValid}
             />
           </Grid>
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
