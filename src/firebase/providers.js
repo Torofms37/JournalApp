@@ -1,12 +1,11 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
-import { FirebaseAuth } from "./config";
 
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({prompt: 'select_account'})
 
 export const singInWithGoogle = async() => { 
   try {
-    const result = await signInWithPopup(FirebaseAuthAuth, googleProvider);
+    const result = await signInWithPopup(FirebaseAuth, googleProvider);
     // const credentials = GoogleAuthProvider.credentialFromResult(result);
     // console.log({credentials});
     const { displayName, email, photoURL, uid } = result.user
@@ -15,7 +14,7 @@ export const singInWithGoogle = async() => {
       // user info
       uid,
       displayName,
-      email,
+      email, 
       photoURL,
     }
     
