@@ -5,7 +5,8 @@ import { Button, Grid, TextField, Typography, Link } from "@mui/material";
 import { AuthLayout } from "../layout/AuthLayout";
 import { useForm } from "../../hook/useForm";
 import { useDispatch, useSelector } from "react-redux";
-import { checkingAuthentications, startGoogleSingIn } from "../../store/auth";
+import { startGoogleSingIn } from "../../store/auth";
+import { startLoginWithEmailPassword } from "../../firebase/providers";
 
 export const LoginPage = () => {
   const { status } = useSelector((state) => state.auth);
@@ -19,8 +20,9 @@ export const LoginPage = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log({ email, password });
-    dispatch(checkingAuthentications());
+    // console.log({ email, password });
+
+    dispatch(startLoginWithEmailPassword({ email, password }));
   };
   const onGoogleSingIn = () => {
     console.log("onGoogleSingIn");
