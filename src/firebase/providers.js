@@ -4,10 +4,8 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   updateProfile,
-  loginWithEmailAndPassword,
 } from "firebase/auth";
 import { FireBaseAuth } from "./config";
-import { startLoginWithEmailAndPassword } from "../store/auth";
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: "select_account" });
 
@@ -61,9 +59,9 @@ export const registerUserWithEmailPassword = async ({
   }
 };
 
-export const loginWithEmailAndPassword = async({ email, password }) => {
+export const loginWithEmailPassword = async({ email, password }) => {
   try {
-    const resp = await startLoginWithEmailAndPassword(
+    const resp = await signInWithEmailAndPassword(
       FireBaseAuth,
       email,
       password
@@ -80,3 +78,7 @@ export const loginWithEmailAndPassword = async({ email, password }) => {
     return { ok: false, errorMessage: error.message };
   }
 };
+
+export const logoutFirebase = async() => {
+  return await FireBaseAuth.signOut();
+}

@@ -12,8 +12,11 @@ import {
   Typography,
   Grid,
 } from "@mui/material";
+import { useSelector } from "react-redux";
 
 export const Sidebar = ({ drawerWidth = 240 }) => {
+  const { displayName } = useSelector((state) => state.auth);
+
   return (
     <Box sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
       <Drawer
@@ -26,7 +29,7 @@ export const Sidebar = ({ drawerWidth = 240 }) => {
       >
         <Toolbar>
           <Typography variant="h6" noWrap component={"div"}>
-            Toro el bolas
+            {displayName}
           </Typography>
         </Toolbar>
         <Divider />
