@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "../hook/useForm";
 import { useEffect, useMemo } from "react";
 import { setActiveNote } from "../store/journal/journalSlice";
+import { startSaveNote } from "../store/journal/thunks";
 
 export const NoteView = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ export const NoteView = () => {
   }, [formState]);
 
   const onSaveNote = () => {
-    dispatch(setActiveNote(formState));
+    dispatch(startSaveNote());
   };
 
   return (
