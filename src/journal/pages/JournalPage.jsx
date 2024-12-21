@@ -3,12 +3,6 @@ import { JournalLayout } from "../layout/JournalLayout";
 import { NothingSelectedView } from "../../views";
 import { NoteView } from "../../views/NoteView";
 import { IconButton } from "@mui/material";
-<<<<<<< HEAD
-import { AddOutlined, Opacity } from "@mui/icons-material";
-import { startNewNote } from "../../store/journal/thunks";
-
-export const JournalPage = () => {
-=======
 import { AddOutlined } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveNote, setNotes, startNewNote } from "../../store/journal";
@@ -17,7 +11,6 @@ export const JournalPage = () => {
   const { isSaving, active, notes, messageSaved } = useSelector(
     (state) => state.journal
   );
->>>>>>> 9f0626b3cb95ca88f82ceea2cc0afb9e53fef9af
   const dispatch = useDispatch();
   const onClickNewNote = () => {
     dispatch(startNewNote());

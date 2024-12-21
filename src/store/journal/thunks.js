@@ -1,26 +1,5 @@
 import { collection, doc, setDoc } from "firebase/firestore/lite";
 import { FireBaseDB } from "../../firebase/config";
-<<<<<<< HEAD
-
-export const startNewNote = () => {
-  return async (dispatch, getState) => {
-    const { uid } = getState().auth;
-    //uid
-    const newNote = {
-      title: "",
-      body: "",
-      date: new Date().getTime(),
-    }
-    const newDoc = doc(collection(FireBaseDB, `${uid}/journal/notes`));
-    const setDocResp = await setDoc ({ newDoc, newNote });
-
-    console.log({newDoc, setDocResp});
-    
-
-    //!dispatch
-    //dispatch (newNoye)
-    //dispatch(activarNote)
-=======
 import { addNewEmptyNote, savingNewNote, setActiveNote, setNotes, setSaving, updateNote } from "./journalSlice";
 import { loadNotes } from "../../helpers";
 
@@ -72,6 +51,5 @@ export const startSaveNote = () => {
     const docRef = doc(FireBaseDB, `${uid}/journal/notes/${note.id}`);
     await setDoc(docRef, noteToFirestore, {merge: true})
     dispatch(updateNote(note))
->>>>>>> 9f0626b3cb95ca88f82ceea2cc0afb9e53fef9af
   }
-}
+};
