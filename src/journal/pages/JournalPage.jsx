@@ -4,7 +4,7 @@ import { NothingSelectedView } from "../../views";
 import { NoteView } from "../../views/NoteView";
 import { IconButton } from "@mui/material";
 import { AddOutlined } from "@mui/icons-material";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { setActiveNote, setNotes, startNewNote } from "../../store/journal";
 
 export const JournalPage = () => {

@@ -14,6 +14,7 @@ import { startLogout } from "../../store/auth";
 
 export const Navbar = ({ drawerWidth = 240 }) => {
   const dispatch = useDispatch();
+
   const onLogout = () => {
     dispatch(startLogout());
   };

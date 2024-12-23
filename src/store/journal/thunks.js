@@ -1,14 +1,12 @@
-import { collection, doc, setDoc } from "firebase/firestore/lite";
+import { collection, deleteDoc, doc, setDoc } from "firebase/firestore/lite";
 import { FireBaseDB } from "../../firebase/config";
-import { addNewEmptyNote, savingNewNote, setActiveNote, setNotes, setSaving, updateNote } from "./journalSlice";
-import { loadNotes } from "../../helpers";
+import { addNewEmptyNote, deleteNoteById, savingNewNote, setActiveNote, setNotes, setPhotosToActiveNote, setSaving, updateNote } from "./journalSlice";
+import { fileUpload, loadNotes } from "../../helpers";
 
 export const startNewNote = () => {
   return async (dispatch, getState) => {
 
     //Todo: tarea dispatch
-
-
     dispatch(savingNewNote())
 
     const {uid} = getState().auth;
@@ -16,8 +14,10 @@ export const startNewNote = () => {
     const newNote = {
       title: '',
       body: '',
+      imagesUrls: [],
       date: new Date().getTime(),
     }
+
     const newDoc = doc(collection(FireBaseDB, `${uid}/journal/notes`));
     await setDoc(newDoc, newNote);
     
@@ -53,3 +53,36 @@ export const startSaveNote = () => {
     dispatch(updateNote(note))
   }
 };
+
+// export const startUpLoadingFiles = (files = []) => {
+//   return async (dispatch) => {
+//     dispatch(setSaving());
+//     // const { active:note } = getState().journal;
+//     await fileUpload(files[0]);
+//     // console.log(files);
+//   }
+// }
+
+export const startUpLoadingFiles = (files = []) => {
+  return async (dispatch) => {
+    dispatch(setSaving());
+
+    const fileUploadPromises = [];
+    for(const file of files) {
+      fileUploadPromises.push(fileUpload(file));
+    }
+    const photosUrls = await Promise.all(fileUploadPromises);    
+    dispatch(setPhotosToActiveNote(photosUrls));
+  }
+}
+
+export const startDeletingNote = () => {
+  return async (dispatch, getState) => {
+    const {uid} = getState().auth;
+    const {active:note} = getState().journal;
+
+    const docRef = doc(FireBaseDB, `${uid}/journal/notes/${note.id}`);
+    await deleteDoc(docRef);    
+    dispatch(deleteNoteById(note.id));
+  }
+}
